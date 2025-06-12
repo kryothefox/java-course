@@ -10,7 +10,7 @@ public class methods {
 
         System.out.println(addedNum);
         System.out.println(sillyNumber);
-        //m
+        
     }
 
     // **** add function, public and static with double return type ****
