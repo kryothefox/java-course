@@ -142,7 +142,7 @@ public class init {
         String dir = "temperatures.txt";
 
         try {
-            FileReader fr = new FileReader(dir)
+            FileReader fr = new FileReader(dir);
             BufferedReader br = new BufferedReader(fr);
             // add the reading instructions.
         
