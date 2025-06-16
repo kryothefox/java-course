@@ -16,6 +16,13 @@ public class User implements Serializable{
         this.passwordString = passwordString;
     }
 
+    
+
+    @Override
+    public String toString() {
+        return "User [userString=" + userString + ", passwordString=" + passwordString + "]";
+    }
+
 
 
     public void sayHello() {

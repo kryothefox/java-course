@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Arrays;
@@ -96,14 +97,11 @@ public class init {
          * }
          */
 
-
         // **** SERIALIZABLE OBJECTS ****
 
         User newUser = new User("meow", "balls");
 
-        try(FileOutputStream fileOut = new FileOutputStream
-        (
-            System.getProperty("user.dir")+"/dia 5/com/core/User.ser")){
+        try (FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.dir") + "/dia 5/com/core/User.ser")) {
 
             ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
 
@@ -112,13 +110,30 @@ public class init {
             objOut.close();
             fileOut.close();
 
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        System.out.println("obj info saved");
+
+
+        try (FileInputStream fileIn = new FileInputStream(System.getProperty("user.dir") + "/dia 5/com/core/User.ser")){
+
+            ObjectInputStream objIn = new ObjectInputStream(fileIn);
+
+            Object theObject = objIn.readObject();
+
+            System.out.println(theObject.toString());
+
         } catch (FileNotFoundException ex){
-
+            ex.printStackTrace();
         } catch (IOException ex){
-
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex){
+            ex.printStackTrace();
         }
 
-        System.out.println("obj info saved");
 
     }
 
