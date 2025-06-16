@@ -1,6 +1,13 @@
 package com.core;
 
+import java.io.Closeable;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Iterator;
@@ -8,8 +15,12 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import javax.imageio.IIOException;
+
 import com.core.Calculator.inconvenientCalculator;
 import com.core.Errors.zeroOnSecondValue;
+
+import UsersPackage.User;
 
 @SuppressWarnings("unused")
 public class init {
@@ -67,13 +78,57 @@ public class init {
          * }
          */
 
-        
-        inconvenientCalculator calculator = new inconvenientCalculator();
-        System.out.println(calculator.subtract(250,0.1));
-        System.out.println(calculator.add(250,0.1));
+        /*
+         * inconvenientCalculator calculator = new inconvenientCalculator();
+         * System.out.println(calculator.subtract(250, 0.1));
+         * System.out.println(calculator.add(250, 0.1));
+         */
+
+        // **** WORKING WITH AUTOCLOSABLE ****
+
+        /*
+         * Test test = new Test();
+         * try (test){
+         * throw new Exception();
+         * } catch (Exception e) {
+         * System.out.println("this prints last");
+         * 
+         * }
+         */
+
+
+        // **** SERIALIZABLE OBJECTS ****
+
+        User newUser = new User("meow", "balls");
+
+        try(FileOutputStream fileOut = new FileOutputStream
+        (
+            System.getProperty("user.dir")+"/dia 5/com/core/User.ser")){
+
+            ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
+
+            objOut.writeObject(newUser);
+
+            objOut.close();
+            fileOut.close();
+
+        } catch (FileNotFoundException ex){
+
+        } catch (IOException ex){
+
+        }
+
+        System.out.println("obj info saved");
 
     }
 
-    
+    static class Test implements AutoCloseable {
+
+        @Override
+        public void close() throws Exception {
+            System.out.println("meow");
+        }
+
+    }
 
 }
