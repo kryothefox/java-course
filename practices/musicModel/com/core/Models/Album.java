@@ -1,7 +1,7 @@
 package musicModel.com.core.Models;
 
 public class Album {
-
+/* 
     private String albumTitle;
 
     private String albumArtist;
@@ -9,5 +9,5 @@ public class Album {
     private String albumGenre;
 
     private String albumPublishDate;
-
+ */
 }
