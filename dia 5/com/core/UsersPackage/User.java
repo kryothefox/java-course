@@ -1,26 +1,20 @@
-package UsersPackage;
+package com.core.UsersPackage;
 
 import java.io.Serializable;
 
 public class User implements Serializable{
 
+    private static final long serialVersionUID = 1L;
+
     String userString;
     String passwordString;
 
-    public User(){}
-
-    
+    public User() {
+    }
 
     public User(String userString, String passwordString) {
         this.userString = userString;
         this.passwordString = passwordString;
-    }
-
-    
-
-    @Override
-    public String toString() {
-        return "User [userString=" + userString + ", passwordString=" + passwordString + "]";
     }
 
 
@@ -40,8 +34,20 @@ public class User implements Serializable{
     public String getPasswordString() {
         return passwordString;
     }
-    
+
     public void setPasswordString(String passwordString) {
         this.passwordString = passwordString;
     }
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
+
+    @Override
+    public String toString() {
+        return "User [userString=" + userString + ", passwordString=" + passwordString + "]";
+    }
+
+    
+
 }

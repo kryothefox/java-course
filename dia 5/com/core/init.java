@@ -20,8 +20,7 @@ import javax.imageio.IIOException;
 
 import com.core.Calculator.inconvenientCalculator;
 import com.core.Errors.zeroOnSecondValue;
-
-import UsersPackage.User;
+import com.core.UsersPackage.User;
 
 @SuppressWarnings("unused")
 public class init {
@@ -101,23 +100,25 @@ public class init {
 
         User newUser = new User("meow", "balls");
 
+        // WRITE OBJECT OUT TO A SERIALIZABLE OBJ FILE
         try (FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.dir") + "/dia 5/com/core/User.ser")) {
-
+            
             ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
-
+            
             objOut.writeObject(newUser);
-
+            
             objOut.close();
             fileOut.close();
-
+            
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
         System.out.println("obj info saved");
-
-
+        
+        
+        // INPUT OBJECT
         try (FileInputStream fileIn = new FileInputStream(System.getProperty("user.dir") + "/dia 5/com/core/User.ser")){
 
             ObjectInputStream objIn = new ObjectInputStream(fileIn);
