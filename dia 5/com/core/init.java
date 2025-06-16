@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import com.core.Calculator.inconvenientCalculator;
 import com.core.Errors.zeroOnSecondValue;
 
 @SuppressWarnings("unused")
@@ -67,25 +68,12 @@ public class init {
          */
 
         
-        Calculator meow = new Calculator();
-        System.out.println(meow.subtract(250,0));
+        inconvenientCalculator calculator = new inconvenientCalculator();
+        System.out.println(calculator.subtract(250,0.1));
+        System.out.println(calculator.add(250,0.1));
 
     }
 
-    public static class Calculator {
-        public double subtract(double a, double b)
-                throws ArithmeticException,
-                NumberFormatException,
-                NullPointerException,
-                NoSuchElementException,
-                zeroOnSecondValue {
-
-            System.out.println("Input 2 numbers");
-            if(b == 0.0){throw new zeroOnSecondValue();};
-            return (a - b);
-
-        }
-        
-    }
+    
 
 }
