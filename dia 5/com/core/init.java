@@ -1,10 +1,13 @@
 package com.core;
 
+import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -133,6 +136,18 @@ public class init {
             ex.printStackTrace();
         } catch (ClassNotFoundException ex){
             ex.printStackTrace();
+        }
+
+
+        String dir = "temperatures.txt";
+
+        try {
+            FileReader fr = new FileReader(dir)
+            BufferedReader br = new BufferedReader(fr);
+            // add the reading instructions.
+        
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
 
