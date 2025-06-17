@@ -19,8 +19,10 @@ public class init {
     // **** FUNCTIONAL INTERFACES ****
     public static void main(String[] args) {
 
-        /* int x = 0;
-        cat newCat = new cat(); */
+        /*
+         * int x = 0;
+         * cat newCat = new cat();
+         */
         // System.out.println(newCat.meow("meow", 4));
 
         // feline<String,Integer> theFeline = (b,a) -> b.repeat(a);
@@ -52,8 +54,7 @@ public class init {
          * //stream.allMatch((int x) -> x%2 == 0);
          */
 
-         
-        Artist Metallica = new Artist("Metallica", 1981, 11, true);
+        /* Artist Metallica = new Artist("Metallica", 1981, 11, true);
         Album killEmAll = new Album("Kill 'Em All", 10, true, 1983, Metallica);
         Album rideTheLightning = new Album("Ride the Lightning", 8, true, 1984, Metallica);
         Album masterOfPuppets = new Album("Master of Puppets", 8, true, 1986, Metallica);
@@ -96,7 +97,6 @@ public class init {
                         "Megaforce Records", "Elektra Records" },
                         "Thrash Metal", 1983, 266, "US-7A3-83-00010")));
 
-
         List<Song> songsRideTheLightning = new ArrayList<>(List.of(
                 new Song("Fight Fire with Fire", rideTheLightning, Metallica, new String[] { "Elektra Records" },
                         "Thrash Metal", 1984, 259, "US-7A3-84-00001"),
@@ -115,7 +115,6 @@ public class init {
                 new Song("The Call of Ktulu", rideTheLightning, Metallica, new String[] { "Elektra Records" },
                         "Instrumental", 1984, 508, "US-7A3-84-00008")));
 
-
         List<Song> songsMasterOfPuppets = new ArrayList<>(List.of(
                 new Song("Battery", masterOfPuppets, Metallica, new String[] { "Elektra Records" }, "Thrash Metal",
                         1986, 252, "US-7A3-86-00001"),
@@ -133,7 +132,6 @@ public class init {
                         328, "US-7A3-86-00007"),
                 new Song("Damage, Inc.", masterOfPuppets, Metallica, new String[] { "Elektra Records" }, "Thrash Metal",
                         1986, 317, "US-7A3-86-00008")));
-        
 
         List<Song> songsAndJusticeForAll = new ArrayList<>(List.of(
                 new Song("Blackened", andJusticeForAll, Metallica, new String[] { "Elektra Records" }, "Thrash Metal",
@@ -153,28 +151,76 @@ public class init {
                 new Song("To Live Is to Die", andJusticeForAll, Metallica, new String[] { "Elektra Records" },
                         "Instrumental", 1988, 408, "US-7A3-88-00008"),
                 new Song("Dyers Eve", andJusticeForAll, Metallica, new String[] { "Elektra Records" }, "Thrash Metal",
-                        1988, 205, "US-7A3-88-00009"))); 
+                        1988, 205, "US-7A3-88-00009"))); */
 
+        // System.out.println(killEmAll.getNumberOfSongs() ==
+        // songsKillEmAll.toArray().length);
 
-            //System.out.println(killEmAll.getNumberOfSongs() == songsKillEmAll.toArray().length);
-            
-            try (FileOutputStream fileOut = new FileOutputStream("metallica.txt")) {
-                OutputStreamWriter streamOut = new OutputStreamWriter(fileOut);
+        /* Artist pinkFloyd = new Artist("Pink Floyd", 1973, 3, false);
+        Album darkSideOfTheMoon = new Album("The Dark Side of the Moon", 10, false, 197, pinkFloyd);
 
-                for (Song song : songsKillEmAll) {
+        List<Song> songsDarkSideOfTheMoon = new ArrayList<>(List.of(
+                new Song("Speak to Me", darkSideOfTheMoon, pinkFloyd, new String[] { "Harvest Records", "EMI" },
+                        "Progressive Rock", 1973, 90, "GBAYE7300001"),
+
+                new Song("Breathe", darkSideOfTheMoon, pinkFloyd, new String[] { "Harvest Records", "EMI" },
+                        "Progressive Rock", 1973, 163, "GBAYE7300002"),
+
+                new Song("On the Run", darkSideOfTheMoon, pinkFloyd, new String[] { "Harvest Records", "EMI" },
+                        "Progressive Rock", 1973, 216, "GBAYE7300003"),
+
+                new Song("Time", darkSideOfTheMoon, pinkFloyd, new String[] { "Harvest Records", "EMI" },
+                        "Progressive Rock", 1973, 258, "GBAYE7300004"),
+
+                new Song("The Great Gig in the Sky", darkSideOfTheMoon, pinkFloyd,
+                        new String[] { "Harvest Records", "EMI" },
+                        "Progressive Rock", 1973, 268, "GBAYE7300005"),
+
+                new Song("Money", darkSideOfTheMoon, pinkFloyd, new String[] { "Harvest Records", "EMI" },
+                        "Progressive Rock", 1973, 382, "GBAYE7300006"),
+
+                new Song("Us and Them", darkSideOfTheMoon, pinkFloyd, new String[] { "Harvest Records", "EMI" },
+                        "Progressive Rock", 1973, 472, "GBAYE7300007"),
+
+                new Song("Any Colour You Like", darkSideOfTheMoon, pinkFloyd, new String[] { "Harvest Records", "EMI" },
+                        "Progressive Rock", 1973, 212, "GBAYE7300008"),
+
+                new Song("Brain Damage", darkSideOfTheMoon, pinkFloyd, new String[] { "Harvest Records", "EMI" },
+                        "Progressive Rock", 1973, 266, "GBAYE7300009"),
+
+                new Song("Eclipse", darkSideOfTheMoon, pinkFloyd, new String[] { "Harvest Records", "EMI" },
+                        "Progressive Rock", 1973, 123, "GBAYE7300010"))); */
+
+       /*  try (FileOutputStream fileOut = new FileOutputStream("metallica.txt")) {
+            OutputStreamWriter streamOut = new OutputStreamWriter(fileOut);
+
+            for (Song song : songsKillEmAll) {
                 streamOut.write(song.toString());
-                }
-                streamOut.close();
-                fileOut.close();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
+            streamOut.close();
+            fileOut.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } */
+        //System.out.println(findByGenre(songsDarkSideOfTheMoon, "Progressive Rock", 3));
+        //System.out.println(getSongByCountry(songsDarkSideOfTheMoon, "US"));
+    }
 
+    public static List<Song> findByGenre(List<Song> songs, String genre, int limit) {
+        List<Song> genreList = songs.stream()
+                .filter((Song s) -> s.getGenre() == genre)
+                .limit(limit)
+                .toList();
+        return genreList;
+    }
 
-
-
-            
-
+    public static List<Song> getSongByCountry(List<Song> songs, String countryCode){
+        List<Song> countryList = songs.stream()
+            .filter( (Song s) -> s.getISRCCode().startsWith(countryCode)).toList();
+        
+        
+        return countryList;
+        
     }
 
     static String implementation(int n, String text) {
