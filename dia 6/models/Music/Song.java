@@ -2,6 +2,7 @@ package models.Music;
 
 import java.util.Arrays;
 
+
 public class Song extends Album {
 
     String title;

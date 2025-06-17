@@ -1,5 +1,9 @@
 package com.core;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,10 +52,6 @@ public class init {
          * //stream.allMatch((int x) -> x%2 == 0);
          */
 
-
-
-
-
          
         Artist Metallica = new Artist("Metallica", 1981, 11, true);
         Album killEmAll = new Album("Kill 'Em All", 10, true, 1983, Metallica);
@@ -96,7 +96,8 @@ public class init {
                         "Megaforce Records", "Elektra Records" },
                         "Thrash Metal", 1983, 266, "US-7A3-83-00010")));
 
-        /* List<Song> songsRideTheLightning = new ArrayList<>(List.of(
+
+        List<Song> songsRideTheLightning = new ArrayList<>(List.of(
                 new Song("Fight Fire with Fire", rideTheLightning, Metallica, new String[] { "Elektra Records" },
                         "Thrash Metal", 1984, 259, "US-7A3-84-00001"),
                 new Song("Ride the Lightning", rideTheLightning, Metallica, new String[] { "Elektra Records" },
@@ -112,9 +113,10 @@ public class init {
                 new Song("Creeping Death", rideTheLightning, Metallica, new String[] { "Elektra Records" },
                         "Thrash Metal", 1984, 396, "US-7A3-84-00007"),
                 new Song("The Call of Ktulu", rideTheLightning, Metallica, new String[] { "Elektra Records" },
-                        "Instrumental", 1984, 508, "US-7A3-84-00008"))); */
+                        "Instrumental", 1984, 508, "US-7A3-84-00008")));
 
-        /* List<Song> songsMasterOfPuppets = new ArrayList<>(List.of(
+
+        List<Song> songsMasterOfPuppets = new ArrayList<>(List.of(
                 new Song("Battery", masterOfPuppets, Metallica, new String[] { "Elektra Records" }, "Thrash Metal",
                         1986, 252, "US-7A3-86-00001"),
                 new Song("Master of Puppets", masterOfPuppets, Metallica, new String[] { "Elektra Records" },
@@ -130,9 +132,10 @@ public class init {
                 new Song("Orion", masterOfPuppets, Metallica, new String[] { "Elektra Records" }, "Instrumental", 1986,
                         328, "US-7A3-86-00007"),
                 new Song("Damage, Inc.", masterOfPuppets, Metallica, new String[] { "Elektra Records" }, "Thrash Metal",
-                        1986, 317, "US-7A3-86-00008"))); */
+                        1986, 317, "US-7A3-86-00008")));
+        
 
-        /* List<Song> songsAndJusticeForAll = new ArrayList<>(List.of(
+        List<Song> songsAndJusticeForAll = new ArrayList<>(List.of(
                 new Song("Blackened", andJusticeForAll, Metallica, new String[] { "Elektra Records" }, "Thrash Metal",
                         1988, 292, "US-7A3-88-00001"),
                 new Song("…And Justice for All", andJusticeForAll, Metallica, new String[] { "Elektra Records" },
@@ -150,19 +153,27 @@ public class init {
                 new Song("To Live Is to Die", andJusticeForAll, Metallica, new String[] { "Elektra Records" },
                         "Instrumental", 1988, 408, "US-7A3-88-00008"),
                 new Song("Dyers Eve", andJusticeForAll, Metallica, new String[] { "Elektra Records" }, "Thrash Metal",
-                        1988, 205, "US-7A3-88-00009"))); */
+                        1988, 205, "US-7A3-88-00009"))); 
 
 
+            //System.out.println(killEmAll.getNumberOfSongs() == songsKillEmAll.toArray().length);
+            
+            try (FileOutputStream fileOut = new FileOutputStream("metallica.txt")) {
+                OutputStreamWriter streamOut = new OutputStreamWriter(fileOut);
 
-            System.out.println(killEmAll.getNumberOfSongs() == songsKillEmAll.toArray().length);
-            for (Song song : songsKillEmAll) {
-                System.err.println(song.toString());
+                for (Song song : songsKillEmAll) {
+                streamOut.write(song.toString());
+                }
+                streamOut.close();
+                fileOut.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
 
-        /* for (Song song : songsAndJusticeForAll) {
-            System.out.println((song.toString()));
-        } */
+
+
+            
 
     }
 
