@@ -19,7 +19,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import javax.imageio.IIOException;
+
+
 
 import com.core.Calculator.inconvenientCalculator;
 import com.core.Errors.zeroOnSecondValue;
@@ -144,6 +145,7 @@ public class init {
         try {
             FileReader fr = new FileReader(dir);
             BufferedReader br = new BufferedReader(fr);
+            br.close();
             // add the reading instructions.
         
         } catch (IOException e) {
