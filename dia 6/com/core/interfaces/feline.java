@@ -1,14 +1,8 @@
 package com.core.interfaces;
 
-
 @FunctionalInterface
-public interface feline {
+public interface feline<T,N> {
 
-    public String meow(int count);
-
-    default void pluh(){
-        System.err.println("PLUH");
-    }
-
+    public T meow(T x, N count);
 
 }
