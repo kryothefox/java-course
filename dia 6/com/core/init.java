@@ -156,10 +156,10 @@ public class init {
         // System.out.println(killEmAll.getNumberOfSongs() ==
         // songsKillEmAll.toArray().length);
 
-        /* Artist pinkFloyd = new Artist("Pink Floyd", 1973, 3, false);
+        Artist pinkFloyd = new Artist("Pink Floyd", 1973, 3, false);
         Album darkSideOfTheMoon = new Album("The Dark Side of the Moon", 10, false, 197, pinkFloyd);
 
-        List<Song> songsDarkSideOfTheMoon = new ArrayList<>(List.of(
+        /* List<Song> songsDarkSideOfTheMoon = new ArrayList<>(List.of(
                 new Song("Speak to Me", darkSideOfTheMoon, pinkFloyd, new String[] { "Harvest Records", "EMI" },
                         "Progressive Rock", 1973, 90, "GBAYE7300001"),
 
@@ -204,7 +204,11 @@ public class init {
         } */
         //System.out.println(findByGenre(songsDarkSideOfTheMoon, "Progressive Rock", 3));
         //System.out.println(getSongByCountry(songsDarkSideOfTheMoon, "US"));
+        //System.out.println(filterByArtistAndYear(songsDarkSideOfTheMoon, "Pink Floyd", 1973));
+        
     }
+
+
 
     public static List<Song> findByGenre(List<Song> songs, String genre, int limit) {
         List<Song> genreList = songs.stream()
@@ -220,7 +224,15 @@ public class init {
         
         
         return countryList;
-        
+    }
+
+    public static List<Song> filterByArtistAndYear(List<Song> songs, String artist, int year){
+
+        List<Song> filteratedList = songs.stream()
+        .filter((Song s) -> s.getYearPublished()==year).filter((Song s) -> s.getAlbumArtist().getName() == artist).toList();
+
+        return filteratedList;
+
     }
 
     static String implementation(int n, String text) {
