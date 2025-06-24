@@ -1,4 +1,3 @@
-
 package cosas.basicas;
 
 public class hellofriend {
