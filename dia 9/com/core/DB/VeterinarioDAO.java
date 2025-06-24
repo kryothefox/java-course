@@ -74,10 +74,10 @@ public class VeterinarioDAO {
                 """
                     INSERT INTO departamentos
                     (nombre_departamento,ubicacion,descripcion)
-                    VALUES (? ? ?)
+                    VALUES (?,?,?)
                 """);
         ) {
-            
+
             pst.setString(1,nombre_departamento);
             pst.setString(2,ubicacion);
             pst.setString(3,descripcion);
@@ -98,5 +98,25 @@ public class VeterinarioDAO {
             
         }
 
+    }
+
+    public void revisarCitas(int id){
+        try (Connection con = ConnectDB.connect();
+        CallableStatement cst = con.prepareCall("CALL getcitas(?)")
+        ) {
+            cst.setInt(1,id);
+            if(cst.execute()){
+                ResultSet rSet = cst.getResultSet();
+                while (rSet.next()) {
+                    System.out.println(
+                        "mascota: " + rSet.getString(1) +
+                        "\nfecha: " + rSet.getString(2) +
+                        "\nhora: " + rSet.getTime(3)
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 }
