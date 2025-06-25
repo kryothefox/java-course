@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence           http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+  <persistence-unit name="com.core_JEE_jar_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.core.modules.entityclasses.Clientes</class>
+    <class>com.core.modules.entityclasses.Tratamientos</class>
+    <class>com.core.modules.entityclasses.Empleados</class>
+    <class>com.core.modules.entityclasses.Especies</class>
+    <class>com.core.modules.entityclasses.DetalleFactura</class>
+    <class>com.core.modules.entityclasses.Departamentos</class>
+    <class>com.core.modules.entityclasses.Mascotas</class>
+    <class>com.core.modules.entityclasses.Stock</class>
+    <class>com.core.modules.entityclasses.Facturas</class>
+    <class>com.core.modules.entityclasses.Citas</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/clinica_veterinaria?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="admin@1234"/>
+    </properties>
+  </persistence-unit>
+</persistence>
