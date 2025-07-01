@@ -1,46 +1,31 @@
 package com.planify.db;
 
+
+
 import com.planify.models.Tasks;
-
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
-import jakarta.validation.ConstraintViolationException;
 
-public class TaskDAO extends GenericDAO implements OperationsCRUD<Tasks>{
+public class TaskDAO extends GenericDAO<Tasks> {
 
     @Override
-    public boolean create(Object t) throws ConstraintViolationException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+    public Tasks findById(int id) throws PersistenceException {
+        return em.find(Tasks.class, id);
     }
 
     @Override
-    public Object findById(int id) throws PersistenceException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+    public Tasks findByName(String name) throws PersistenceException {
+        try {
+            return em.createNamedQuery("Tasks.findByTaskName", Tasks.class)
+                    .setParameter("task_name", name)
+                    //.getResultStream().findFirst().orElse(null);
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        } catch (Exception e) {
+            throw new PersistenceException("Error finding AppUser by name", e);
+        }
+
     }
 
-    @Override
-    public Object findByName(String name) throws PersistenceException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByName'");
-    }
-
-    @Override
-    public void delete(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
-    }
-
-    @Override
-    public boolean create(Tasks t) throws ConstraintViolationException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
-    }
-
-    @Override
-    public void close() throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'close'");
-    }
-    
 }

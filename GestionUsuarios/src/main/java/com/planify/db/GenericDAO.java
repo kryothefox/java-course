@@ -1,27 +1,57 @@
 package com.planify.db;
 
-import java.io.Closeable;
-import java.io.IOException;
 
+import com.planify.models.AppUser;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.PersistenceException;
+import jakarta.validation.ConstraintViolationException;
+import java.io.Closeable;
+import java.io.IOException;
 
-public abstract class GenericDAO implements Closeable {
+public abstract class GenericDAO<T> implements Closeable, OperationsCRUD<T> {
 
-
+    //@PersistenceContext(unitName = "ToDoListPU")
     public EntityManager em;
-    private final EntityManagerFactory emf =
-            Persistence.createEntityManagerFactory("ToDoListPU");
+    private final EntityManagerFactory emf
+            = Persistence.createEntityManagerFactory("ToDoListPU");
 
-
-    public GenericDAO(){
+    public GenericDAO() {
         em = emf.createEntityManager();
     }
 
     @Override
-    public void close() throws IOException {
-       em.close();
+    public boolean create(T t) throws ConstraintViolationException {
+        try {
+            em.getTransaction().begin();
+            em.persist(t);
+            em.getTransaction().commit();
+            return true;
+        } catch (PersistenceException e) {
+            System.err.println("Cause: " + e.getCause().getMessage()
+                    + " - Message: " + e.getMessage());
+            return false;
+        } catch (ConstraintViolationException e) {
+            throw e;
+        }
     }
 
+    @Override
+    public void delete(int id) {
+        try {
+            em.getTransaction().begin();
+            em.remove(id);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            System.err.println(e.getCause() + " - " + e.getMessage());
+        }
+    }
+
+    
+    @Override
+    public void close() {
+        em.close();
+    }
 }

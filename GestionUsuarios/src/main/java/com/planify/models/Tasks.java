@@ -78,6 +78,17 @@ public class Tasks implements Serializable {
         this.taskId = taskId;
     }
 
+    
+
+    public Tasks(@NotNull @Size(min = 1, max = 45) String taskName, @Size(max = 65535) String taskDescription, @NotNull Date limitDate, @Size(max = 11) String taskState) {
+        this.taskName = taskName;
+        this.taskDescription = taskDescription;
+        this.creationDate = new Date();
+        this.limitDate = limitDate;
+        this.taskState = taskState;
+        this.isComplete = taskState.equals("completed");
+    }
+
     public Tasks(Integer taskId, String taskName, Date creationDate, Date limitDate) {
         this.taskId = taskId;
         this.taskName = taskName;
