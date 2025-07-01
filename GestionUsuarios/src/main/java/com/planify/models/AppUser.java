@@ -48,18 +48,18 @@ public class AppUser implements Serializable {
     @NotNull
     @Size(min = 3, max = 10, message = "username-El nombre tiene que tener entre 3 y 10")
     private String username;
-    @Pattern(regexp="^(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", message="pwd-Invalid password")
+    //@Pattern(regexp="^(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", message="pwd-Invalid password")
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     private String password;
-    @Pattern(regexp="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message="email-Invalid email")
+    //@Pattern(regexp="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message="email-Invalid email")
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    // @Email(message = "Patrón de email incorrecto")
+    @Email(message = "Patrón de email incorrecto")
     private String email;
-    @Pattern(regexp="^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{3}$", message="phone-Invalid phone number")
+    //@Pattern(regexp="^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{3}$", message="phone-Invalid phone number")
     @Size(max = 45)
     @Column(name = "phone_number")
     private String phoneNumber;

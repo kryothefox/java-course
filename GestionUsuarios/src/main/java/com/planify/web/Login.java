@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.ConstraintViolationException;
 import java.util.Map;
 import java.util.TreeMap;
@@ -67,14 +68,22 @@ public class Login extends HttpServlet {
 
     private void enter(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        System.out.println("enter data time");
+        
         String username = request.getParameter("username");
-        String pwd = request.getParameter("pwd");
+        System.out.println(username);
+        String pwd = request.getParameter("password");
+        System.out.println(pwd);
 
         try (UserDAO udb = new UserDAO()) {
             AppUser currentUser = udb.findByName(username);
+            System.out.println(username);
             if (currentUser != null) {
+                System.out.println("username found");
                 checkPWD(currentUser, pwd, request, response);
             } else {
+                System.out.println("username not found");
                 request.setAttribute("error_msg", "No existe ningún usuario con este nombre");
                 request.getRequestDispatcher("/login.jsp").forward(request, response);
             }
@@ -82,10 +91,14 @@ public class Login extends HttpServlet {
 
     }
 
-    private void checkPWD(AppUser currentUser,String pwd,HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
+    private void checkPWD(AppUser currentUser, String pwd, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (currentUser.getPassword().equals(pwd)) {
             //request.setAttribute("bienvenida", "Hola");
-            request.getRequestDispatcher("/wel").include(request, response);
+
+            HttpSession session = request.getSession();
+            session.setAttribute("user", currentUser);
+            System.out.println("checking" + currentUser.getPassword() + "with" + currentUser.getUsername());
+            request.getRequestDispatcher("/tasks.jsp").include(request, response);
         } else {
             request.setAttribute("error_msg", "No existe ningún usuario con este nombre");
             request.getRequestDispatcher("/login.jsp").forward(request, response);
@@ -107,7 +120,7 @@ public class Login extends HttpServlet {
 
     private AppUser getAppUser(HttpServletRequest request) {
         String username = request.getParameter("username");
-        String pwd = request.getParameter("pwd");
+        String pwd = request.getParameter("password");
         String email = request.getParameter("email");
         String phoneNumber = request.getParameter("phone");
         if (phoneNumber.isEmpty()) {

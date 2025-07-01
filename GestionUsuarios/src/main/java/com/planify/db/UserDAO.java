@@ -9,16 +9,9 @@ import jakarta.persistence.PersistenceException;
 import jakarta.validation.ConstraintViolationException;
 import java.io.Closeable;
 
-public class UserDAO implements Closeable, OperationsCRUD<AppUser> {
+public class UserDAO extends GenericDAO implements OperationsCRUD<AppUser> {
     
-    //@PersistenceContext(unitName = "ToDoListPU")
-    private EntityManager em;
-    private final EntityManagerFactory emf =
-            Persistence.createEntityManagerFactory("ToDoListPU");
 
-    public UserDAO() {
-        em = emf.createEntityManager();
-    }
 
     @Override
     public boolean create(AppUser t) throws ConstraintViolationException {
@@ -53,9 +46,22 @@ public class UserDAO implements Closeable, OperationsCRUD<AppUser> {
             throw new PersistenceException("Error finding AppUser by name", e);
         }
     }
+    
+    @Override
+    public void delete(int id) {
+        try {
+            em.getTransaction().begin();
+            em.remove(id);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            System.err.println(e.getCause() + " - " + e.getMessage());
+        }
+    }
 
     @Override
     public void close() {
         em.close();
     }
+
 }

@@ -11,4 +11,5 @@ public interface OperationsCRUD<T> {
     
     public T findByName(String name) throws PersistenceException;
     
+    public void delete(int id);
 }
