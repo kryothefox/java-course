@@ -9,6 +9,11 @@ import jakarta.validation.ConstraintViolationException;
 public class UserDAO extends GenericDAO<AppUser>{
     
 
+    public UserDAO() {
+        super(AppUser.class);
+       
+    }
+
     @Override
     public AppUser findById(int id) throws PersistenceException {
         return em.find(AppUser.class, id);

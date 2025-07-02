@@ -1,12 +1,14 @@
 package com.planify.db;
 
-
-
 import com.planify.models.Tasks;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
 
 public class TaskDAO extends GenericDAO<Tasks> {
+
+    public TaskDAO() {
+        super(Tasks.class);
+    }
 
     @Override
     public Tasks findById(int id) throws PersistenceException {
@@ -18,7 +20,7 @@ public class TaskDAO extends GenericDAO<Tasks> {
         try {
             return em.createNamedQuery("Tasks.findByTaskName", Tasks.class)
                     .setParameter("task_name", name)
-                    //.getResultStream().findFirst().orElse(null);
+                    // .getResultStream().findFirst().orElse(null);
                     .getSingleResult();
         } catch (NoResultException e) {
             return null;

@@ -16,8 +16,10 @@ public abstract class GenericDAO<T> implements Closeable, OperationsCRUD<T> {
     public EntityManager em;
     private final EntityManagerFactory emf
             = Persistence.createEntityManagerFactory("ToDoListPU");
+    private final Class<T> entityClass;
 
-    public GenericDAO() {
+    public GenericDAO(Class<T> entityClass) {
+        this.entityClass = entityClass;
         em = emf.createEntityManager();
     }
 
@@ -40,8 +42,9 @@ public abstract class GenericDAO<T> implements Closeable, OperationsCRUD<T> {
     @Override
     public void delete(int id) {
         try {
-            em.getTransaction().begin();
-            em.remove(id);
+            em.getTransaction().begin(); 
+            T t1 = em.find(entityClass, id);
+            if(t1 != null) em.remove(t1);          
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();

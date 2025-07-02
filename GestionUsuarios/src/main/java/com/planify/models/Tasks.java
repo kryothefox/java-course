@@ -21,6 +21,7 @@ import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -29,13 +30,13 @@ import java.util.Date;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Tasks.findAll", query = "SELECT t FROM Tasks t"),
-    @NamedQuery(name = "Tasks.findByTaskId", query = "SELECT t FROM Tasks t WHERE t.taskId = :taskId"),
-    @NamedQuery(name = "Tasks.findByTaskName", query = "SELECT t FROM Tasks t WHERE t.taskName = :taskName"),
-    @NamedQuery(name = "Tasks.findByCreationDate", query = "SELECT t FROM Tasks t WHERE t.creationDate = :creationDate"),
-    @NamedQuery(name = "Tasks.findByLimitDate", query = "SELECT t FROM Tasks t WHERE t.limitDate = :limitDate"),
-    @NamedQuery(name = "Tasks.findByTaskState", query = "SELECT t FROM Tasks t WHERE t.taskState = :taskState"),
-    @NamedQuery(name = "Tasks.findByIsComplete", query = "SELECT t FROM Tasks t WHERE t.isComplete = :isComplete")})
+        @NamedQuery(name = "Tasks.findAll", query = "SELECT t FROM Tasks t"),
+        @NamedQuery(name = "Tasks.findByTaskId", query = "SELECT t FROM Tasks t WHERE t.taskId = :taskId"),
+        @NamedQuery(name = "Tasks.findByTaskName", query = "SELECT t FROM Tasks t WHERE t.taskName = :taskName"),
+        @NamedQuery(name = "Tasks.findByCreationDate", query = "SELECT t FROM Tasks t WHERE t.creationDate = :creationDate"),
+        @NamedQuery(name = "Tasks.findByLimitDate", query = "SELECT t FROM Tasks t WHERE t.limitDate = :limitDate"),
+        @NamedQuery(name = "Tasks.findByTaskState", query = "SELECT t FROM Tasks t WHERE t.taskState = :taskState"),
+        @NamedQuery(name = "Tasks.findByIsComplete", query = "SELECT t FROM Tasks t WHERE t.isComplete = :isComplete") })
 public class Tasks implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -78,22 +79,20 @@ public class Tasks implements Serializable {
         this.taskId = taskId;
     }
 
-    
-
-    public Tasks(@NotNull @Size(min = 1, max = 45) String taskName, @Size(max = 65535) String taskDescription, @NotNull Date limitDate, @Size(max = 11) String taskState) {
-        this.taskName = taskName;
-        this.taskDescription = taskDescription;
-        this.creationDate = new Date();
-        this.limitDate = limitDate;
-        this.taskState = taskState;
-        this.isComplete = taskState.equals("completed");
-    }
-
     public Tasks(Integer taskId, String taskName, Date creationDate, Date limitDate) {
         this.taskId = taskId;
         this.taskName = taskName;
         this.creationDate = creationDate;
         this.limitDate = limitDate;
+    }
+
+    public Tasks(String taskName, String taskDescription, Date limitDate, String taskState) {
+        this.taskName = taskName;
+        this.taskDescription = taskDescription;
+        this.creationDate = new Date();
+        this.limitDate = new Date();
+        this.taskState = taskState;
+        this.isComplete = taskState.equals("completed");
     }
 
     public Integer getTaskId() {
@@ -174,7 +173,8 @@ public class Tasks implements Serializable {
             return false;
         }
         Tasks other = (Tasks) object;
-        if ((this.taskId == null && other.taskId != null) || (this.taskId != null && !this.taskId.equals(other.taskId))) {
+        if ((this.taskId == null && other.taskId != null)
+                || (this.taskId != null && !this.taskId.equals(other.taskId))) {
             return false;
         }
         return true;
@@ -184,5 +184,5 @@ public class Tasks implements Serializable {
     public String toString() {
         return "com.planify.models.Tasks[ taskId=" + taskId + " ]";
     }
-    
+
 }
