@@ -1,6 +1,6 @@
-package com.planify.db;
+package com.todolist.db;
 
-import com.planify.models.Tasks;
+import com.todolist.models.Tasks;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
 

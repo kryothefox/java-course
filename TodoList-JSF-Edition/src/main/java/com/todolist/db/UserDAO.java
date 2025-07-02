@@ -1,7 +1,7 @@
-package com.planify.db;
+package com.todolist.db;
 
 
-import com.planify.models.AppUser;
+import com.todolist.models.AppUser;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
 import jakarta.validation.ConstraintViolationException;

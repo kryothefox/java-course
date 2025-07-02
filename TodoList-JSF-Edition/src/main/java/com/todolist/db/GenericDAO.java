@@ -1,7 +1,7 @@
-package com.planify.db;
+package com.todolist.db;
 
 
-import com.planify.models.AppUser;
+import com.todolist.models.AppUser;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;

@@ -1,4 +1,4 @@
-package com.planify.db;
+package com.todolist.db;
 
 import jakarta.persistence.PersistenceException;
 import jakarta.validation.ConstraintViolationException;
