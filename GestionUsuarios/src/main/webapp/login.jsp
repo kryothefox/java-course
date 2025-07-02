@@ -28,8 +28,8 @@
                         </c:if>
                         <div>
                             <input type="hidden" value="entrar" name="actionBtn"/>
-                            <button type="submit" class="btn btn-success col-5" name="submitBtn">Enviar</button>
-                            <a href="signIn.jsp" class="btn btn-info col-5">Crear Usuario</a>
+                            <button style="margin-top: 2em" type="submit" class="btn btn-success col-5" name="submitBtn">Enviar</button>
+                            <a style="margin-top: 2em;" href="signIn.jsp" class="btn btn-info col-5">Crear Usuario</a>
                         </div>
                       </div>
                     </fieldset>

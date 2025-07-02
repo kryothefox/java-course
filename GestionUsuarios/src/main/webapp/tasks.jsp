@@ -82,7 +82,7 @@
                                                 <form id="formulario${task.taskId}" action="TasksServlet" method="POST">
                                                     <input hidden="true" name="taskId" value="${task.taskId}"/>
                                                     <input type="button" value="Eliminar" class ="btn btn-danger btn-sm"
-                                                           onclick="acceptDelete(${task})"/>
+                                                           onclick="acceptDelete(${task.taskId})"/>
                                                 </form>
                                             </td>
                                         </tr>
