@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Facelet New User</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.7/cosmo/bootstrap.min.css"/>
+    </h:head>
+    <h:body class="container-fluid">
+        <f:view>
+            <h:form styleClass="p-4 text-start" style="max-width: 400px;">
+                <h1 class="mb-4">Crear Nuevo Usuario</h1>
+                
+                <div class="mb-3">
+                    <h:outputLabel for="username" value="Nombre:" styleClass="form-label"/>
+                    <h:inputText id="username" value="#{userBean.currentUser.username}" 
+                                 title="Username" required="true" 
+                                 requiredMessage="The Username field is required."
+                                 styleClass="form-control"/>
+                </div>
+                
+                <div class="mb-3">
+                    <h:outputLabel for="password" value="Contraseña:" styleClass="form-label"/>
+                    <h:inputSecret id="password" value="#{userBean.currentUser.password}" 
+                                   title="Password" required="true" 
+                                   requiredMessage="The Password field is required."
+                                   styleClass="form-control"/>
+                </div>
+                
+                <div class="mb-3">
+                    <h:outputLabel for="email" value="Email:" styleClass="form-label"/>
+                    <h:inputText id="email" value="#{userBean.currentUser.email}" 
+                                 title="Email" required="true" 
+                                 requiredMessage="The Email field is required."
+                                 styleClass="form-control"/>
+                </div>
+                
+                <div class="mb-3">
+                    <h:outputLabel for="phoneNumber" value="Teléfono:" styleClass="form-label"/>
+                    <h:inputText id="phoneNumber" value="#{userBean.currentUser.phoneNumber}" 
+                                 title="PhoneNumber"
+                                 styleClass="form-control"/>
+                </div>
+                
+                <h:commandButton styleClass="btn btn-primary" style="width:80px;" value="Enviar" action="#{userBean.createUser()}"/>
+            </h:form>
+            
+            <h:form styleClass="ps-4 text-start" style="max-width: 400px;">
+                <h:commandLink styleClass="btn btn-secondary" style="width:80px;" value="Salir" action="index"/>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>

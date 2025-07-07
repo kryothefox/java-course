@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Facelet Home</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.7/cosmo/bootstrap.min.css"/>
+    </h:head>
+    <h:body class="container-fluid">
+        <f:view>
+            <h:form styleClass="p-4 text-start" style="max-width: 400px;">
+                <h1 class="mb-4">Nueva Tarea</h1>
+
+                <div class="mb-3">
+                    <h:outputLabel for="taskName" value="Nombre:" styleClass="form-label"/>
+                    <h:inputText id="taskName"
+                                 value="#{userBean.newTask.taskName}"
+                                 title="TaskName"
+                                 required="true"
+                                 requiredMessage="The TaskName field is required."
+                                 styleClass="form-control"/>
+                </div>
+
+                <div class="mb-3">
+                    <h:outputLabel for="taskDescription" value="Descripción:" styleClass="form-label"/>
+                    <h:inputTextarea id="taskDescription"
+                                     value="#{userBean.newTask.taskDescription}"
+                                     title="TaskDescription"
+                                     rows="4"
+                                     styleClass="form-control"/>
+                </div>
+
+                <div class="mb-3">
+                    <h:outputLabel for="limitDate" value="Fecha Límite:" styleClass="form-label"/>
+                    <h:inputText id="limitDate"
+                                 value="#{userBean.newTask.limitDate}"
+                                 title="LimitDate"
+                                 required="true"
+                                 requiredMessage="The LimitDate field is required."
+                                 styleClass="form-control">
+                        <f:convertDateTime pattern="yyyy-MM-dd"/>
+                        <f:passThroughAttribute name="type" value="date"/>
+                    </h:inputText>
+                </div>
+
+                <div class="mb-3">
+                    <h:outputLabel for="taskState" value="Estado:" styleClass="form-label"/>
+                    <h:selectOneMenu id="taskState"
+                                     value="#{userBean.newTask.taskState}"
+                                     title="TaskState"
+                                     required="true"
+                                     requiredMessage="The TaskState field is required."
+                                     styleClass="form-select">
+                        <f:selectItem itemLabel="Pendiente" itemValue="pending"/>
+                        <f:selectItem itemLabel="En Progreso" itemValue="in_progress"/>
+                        <f:selectItem itemLabel="Completado" itemValue="completed"/>
+                        <f:selectItem itemLabel="Cancelado" itemValue="cancelled"/>
+                    </h:selectOneMenu>
+                </div>
+
+                <h:commandButton styleClass="btn btn-primary" value="Crear" action="#{userBean.createTask()}"/>
+            </h:form>
+        </f:view>
+
+        <h1 class="mt-2 mb-4">Tareas de #{userBean.currentUser.username}</h1>
+        
+        <h:dataTable styleClass="table table-bordered table-striped table-hover table-sm"
+                     value="#{userBean.currentUser.tasksList}" var="task">
+            <h:column>
+                <f:facet name="header">Nombre</f:facet>
+                #{task.taskName}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Descripción</f:facet>
+                #{task.taskDescription}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Fecha de Creación</f:facet>
+                #{task.creationDate}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Fecha Límite</f:facet>
+                #{task.limitDate}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Estado</f:facet>
+                <h:outputText value="#{task.taskState == 'pending' ? 'Pendiente' : 
+                        (task.taskState == 'in_progress' ? 'En Progreso' : 
+                        (task.taskState == 'completed' ? 'Completado' : 
+                        (task.taskState == 'cancelled' ? 'Cancelado' : task.taskState)))}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">¿Completado?</f:facet>
+                <h:outputText value="#{task.isComplete ? 'Sí' : 'No'}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Acciones</f:facet>
+                <h:form>
+                    <h:commandButton styleClass="btn btn-danger" value="Eliminar"
+                                     action="#{userBean.delete(task.taskId)}" onclick="return confirm('¿Estás seguro que quieres eliminar esta tarea?');"/>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+    </h:body>
+</html>

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Facelet Index</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.7/cosmo/bootstrap.min.css"/>
+    </h:head>
+    <h:body class="container-fluid">
+        <f:view>
+            <h:form styleClass="p-4 text-start" style="max-width: 400px;">
+                <h1 class="mb-4">Iniciar Sesión</h1>
+                <h:outputLabel value="#{userBean.errorMessage}" style="color:red;" rendered="#{not empty userBean.errorMessage}"/>
+                
+                <div class="mb-3">
+                    <h:outputLabel for="username" value="Username:" styleClass="form-label"/>
+                    <h:inputText id="username" value="#{userBean.currentUser.username}" 
+                                 title="Username" required="true" 
+                                 requiredMessage="The Username field is required."
+                                 styleClass="form-control"/>
+                </div>
+                
+                <div class="mb-3">
+                    <h:outputLabel for="password" value="Password:" styleClass="form-label"/>
+                    <h:inputSecret id="password" value="#{userBean.currentUser.password}" 
+                                   title="Password" required="true" 
+                                   requiredMessage="The Password field is required."
+                                   styleClass="form-control">
+                        <f:passThroughAttribute name="placeholder"
+                                                value="#{not empty userBean.currentUser.password ? '******' : ''}"/>
+                    </h:inputSecret>
+                </div>
+                
+                <h:commandButton styleClass="btn btn-primary" style="width:80px;" value="Enviar" action="#{userBean.login()}"/>
+            </h:form>
+            <h:form styleClass="ps-4 text-start" style="max-width: 400px;">
+                <h:commandLink styleClass="btn btn-success" style="width:80px;" value="Crear" action="newuser"/>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
