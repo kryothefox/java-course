@@ -1,0 +1,18 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                  xmlns:h="http://xmlns.jcp.org/jsf/html"
+                  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                  template="template.xhtml">
+    <ui:define name="titulo">Ejemplo dinámico</ui:define>
+    <ui:define name="contenido">
+        <h:form>
+            <h:commandButton value="Mostrar Vista 1" action="#{navegacionBean.mostrarVista1}" />
+            <h:commandButton value="Mostrar Vista 2" action="#{navegacionBean.mostrarVista2}" />
+        </h:form>
+        <h:panelGroup rendered="#{navegacionBean.vista == 1}">
+            <ui:include src="vista1.xhtml" />
+        </h:panelGroup>
+        <h:panelGroup rendered="#{navegacionBean.vista == 2}">
+            <ui:include src="vista2.xhtml" />
+        </h:panelGroup>
+    </ui:define>
+</ui:composition>
