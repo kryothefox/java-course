@@ -1,20 +1,21 @@
-package com.todolist.db;
+package com.videogame.front.db;
 
-import com.todolist.models.AppUser;
+
+import com.videogame.front.user.entity.User;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
 
-public class UserDAO extends GenericDAO<AppUser>{
+public class UserDAO extends GenericDAO<User>{
 
     public UserDAO() {
-        super(AppUser.class);
+        super( User.class);
     }
 
     @Override
-    public AppUser findByName(String name) throws PersistenceException {
+    public User findByName(String name) throws PersistenceException {
         try {
             em.clear();
-            AppUser user = em.createNamedQuery("AppUser.findByUsername", AppUser.class)
+            User user = em.createNamedQuery("User.findByUsername", User.class)
                      .setParameter("username", name)
                      .getSingleResult();
             if (user != null) {
@@ -24,7 +25,7 @@ public class UserDAO extends GenericDAO<AppUser>{
         } catch (NoResultException nre) {
             return null;
         } catch (Exception e) {
-            throw new PersistenceException("Error finding AppUser by name", e);
+            throw new PersistenceException("Error finding User by name", e);
         }
     }
 

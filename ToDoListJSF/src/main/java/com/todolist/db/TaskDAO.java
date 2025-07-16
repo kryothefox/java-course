@@ -26,6 +26,7 @@ public class TaskDAO extends GenericDAO<Tasks> {
             return null;
         } catch (Exception e) {
             throw new PersistenceException("Error finding AppUser by name", e);
+            
         }
 
     }

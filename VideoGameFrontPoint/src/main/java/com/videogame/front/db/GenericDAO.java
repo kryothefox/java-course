@@ -1,4 +1,4 @@
-package com.todolist.db;
+package com.videogame.front.db;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -12,7 +12,7 @@ public abstract class GenericDAO<T> implements Closeable, OperationsCRUD<T> {
     //@PersistenceContext(unitName = "ToDoListPU")
     public EntityManager em;
     private final EntityManagerFactory emf
-            = Persistence.createEntityManagerFactory("ToDoListPU");
+            = Persistence.createEntityManagerFactory("userPU");
     private final Class<T> entityClass;
 
     public GenericDAO(Class<T> entityClass) {

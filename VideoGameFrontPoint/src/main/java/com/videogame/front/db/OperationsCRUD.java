@@ -1,4 +1,4 @@
-package com.todolist.db;
+package com.videogame.front.db;
 
 import jakarta.persistence.PersistenceException;
 import jakarta.validation.ConstraintViolationException;

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.7/lux/bootstrap.min.css" />
+</h:head>
+<h:body class="bg-dark">
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Videogames Front-end</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="index.xhtml">Home
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link me-sm-2" href="register.xhtml">Join</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+        <form>
+            <fieldset>
+            <legend class="mb-4">Register Form</legend>
+            <div class="mb-3">
+                <label for="username" value="Username" styleClass="form-label mt-4"></label>
+                <input value="#{userHandler.currentUser.username}" styleClass="form-control" id="username"
+                    title="Username" required="true" requiredMessage="The Username field is required." />
+            </div>
+            <div class="mb-3">
+                <h:outputLabel for="password" value="Password" styleClass="form-label mt-4"></h:outputLabel>
+                <h:inputText value="#{userHandler.currentUser.password}" styleClass="form-control" id="password"
+                    title="password" required="true" requiredMessage="The Password field is required." />
+            </div>
+            
+            <div class="mb-3">
+                <h:outputLabel for="email" value="Email" styleClass="form-label mt-4"></h:outputLabel>
+                <h:inputText value="#{userHandler.currentUser.email}" styleClass="form-control" id="email"
+                    title="email" required="true" requiredMessage="The email field is required." />
+            </div>
+
+            <h:commandButton styleClass="btn btn-primary" style="width:80px;" value="Register"
+                action="#{userHandler.createUser()}" />
+</fieldset>
+        </form>
+            
+        
+</h:body>
+
+</html>
